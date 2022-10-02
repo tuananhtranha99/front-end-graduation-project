@@ -1,0 +1,30 @@
+@import '@core/scss/angular/libs/flatpickr.component.scss';
+@import '@core/scss/angular/libs/select.component.scss';
+@import '@core/scss/base/pages/app-user.scss';
+
+.delete-image {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    cursor: pointer;
+}
+.content-image{
+    display: flex;
+    flex-direction: row;
+    gap:15px;
+    flex-wrap: wrap;
+}
+.image {
+    cursor: pointer;
+    border: 1px dashed rgba(35, 31, 32, 0.6);
+    width: 104px;
+    height: 104px;
+    align-items: center;
+    text-align: center;
+    padding: 5px
+
+}
+
+.image:hover {
+    border: 1px dashed rgb(40, 180, 255);
+}

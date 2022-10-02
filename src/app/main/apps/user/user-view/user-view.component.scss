@@ -1,0 +1,21 @@
+@import '@core/scss/base/pages/app-user.scss';
+@import '@core/scss/angular/libs/swiper.component.scss';
+
+body > app-root > horizontal-layout > div.app-content.content > content > div > app-user-view > div > div > section > div:nth-child(2) > div:nth-child(1) > div > div.card-body > ul > li > div > div.align-items-center > div > ngb-carousel > ol > li{
+    background-color: black;
+}
+
+body > app-root > horizontal-layout > div.app-content.content > content > div > app-user-view > div > div > section > div:nth-child(2) > div:nth-child(1) > div > div.card-body > ul > li > div > div.align-items-center > div > ngb-carousel > a.carousel-control-next.ng-star-inserted > span.carousel-control-next-icon,
+body > app-root > horizontal-layout > div.app-content.content > content > div > app-user-view > div > div > section > div:nth-child(2) > div:nth-child(1) > div > div.card-body > ul > li > div > div.align-items-center > div > ngb-carousel > a.carousel-control-prev.ng-star-inserted > span.carousel-control-prev-icon{
+    background-color: black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.user-info-title{
+    margin: 0 auto;
+    vertical-align: ce;
+    display: flex;
+    align-items: center;
+}

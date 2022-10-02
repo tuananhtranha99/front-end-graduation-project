@@ -1,0 +1,54 @@
+<div class="card ecommerce-card">
+  <div class="item-img p-3">
+    <a [routerLink]="'/apps/e-commerce/details/' + product.id">
+      <img [src]="product.imgPath" alt="img-placeholder" />
+    </a>
+  </div>
+  <div class="card-body">
+    <div class="item-name">
+      <h6 class="mb-0">
+        <a [routerLink]="'/apps/e-commerce/details/' + product.id" class="text-body">{{ product.name }}</a>
+      </h6>
+      <div><span class="item-company">Loại: {{ product.productType.name }}</span></div>
+      <div><span class="item-company">Màu sắc: {{ product.color.name }}</span></div>
+      <div class="item-rating">
+        <div class="rating rating-sm">
+          <ngb-rating [rate]="product.rating" [readonly]="true" [max]="5" class="outline-none">
+            <ng-template let-fill="fill" let-index="index"
+              ><span class="fa fa-star-o mr-25" [class.fa-star]="fill === 100"></span
+            ></ng-template>
+          </ngb-rating>
+        </div>
+      </div>
+    </div>
+    <!-- <span class="text-success mb-1">In Stock</span> -->
+    <!-- <div class="item-quantity">
+      <span class="quantity-title">Số lượng:</span>
+      <div class="quantity-counter-wrapper">
+        <core-touchspin [numberValue]="1" [stepValue]="1" (onChange)="changeQuantity($event)"></core-touchspin>
+      </div>
+    </div> -->
+    <!-- <span class="delivery-date text-muted">Delivery by, Wed Apr 25</span>
+    <span class="text-success">17% off 4 offers Available</span> -->
+  </div>
+  <div class="item-options text-center">
+    <div class="item-wrapper">
+      <div class="item-cost">
+        <h4>Thành tiền</h4>
+        <h6 class="item-price">{{ product.price*quantity | number: '1.0-0' }}đ</h6>
+        <p class="card-text shipping" *ngIf="product.hasFreeShipping == 1">
+          <span class="badge badge-pill badge-light-success">Free Shipping</span>
+        </p>
+      </div>
+    </div>
+    <div>
+    <div class="mt-2">
+      <i
+        class="align-middle fa mr-25 fa-trash-o"
+        style="font-size: 20px; cursor: pointer"
+        (click)="removeFromCart(product)"
+      ></i>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+@import '@core/scss/base/pages/app-ecommerce-details.scss';
+@import '@core/scss/angular/libs/swiper.component.scss';
+@import '@core/scss/angular/libs/ratings.component.scss';
+
+
+.gradient-background{
+    background-image: linear-gradient(blue, purple);
+    color: white;
+}
+
+.red-border{
+    border: 2px solid rgb(175, 1, 1) !important;
+}
+
+.product-type{
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid rgb(153, 153, 153);
+}
+
+.default-background{
+    background: rgb(185, 185, 185);
+}
+
+.color{
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid rgb(153, 153, 153);
+}
+
+.checked-icon{
+    position: absolute;
+    top: -3px;
+    left: -4px;
+    border-radius: 10px;
+}
+
+tr{
+    width: 100%
+}
+
+.p-galleria-thumbnail-item{
+    overflow: hidden !important;
+}
+
+.p-galleria-thumbnail-container{
+    padding: 0 ;
+    background: transparent !important
+}
+
+.p-galleria-thumbnail-item-content{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+    outline: none !important;
+}
+
+.p-galleria-item{
+    padding: 0 4rem;
+}
+
+.p-galleria-item-nav{
+    background: darkgrey !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 50% !important;
+}
+
+.p-galleria-item-nav:hover{
+    background: rgb(185, 61, 61) !important;
+    // width: 3rem;
+    // height: 3rem;
+    // border-radius: 50%;
+}
+
+p-galleriaitem{
+    margin-bottom: 20px;
+}

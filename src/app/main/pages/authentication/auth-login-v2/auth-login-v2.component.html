@@ -1,0 +1,123 @@
+<div class="auth-wrapper auth-v2">
+  <div class="auth-inner row m-0">
+    <!-- Brand logo--><a class="brand-logo" routerLink="/apps/e-commerce/shop">
+      <img src="assets/images/logo/pz.jpg" alt="brand-logo" height="28" />
+      <h2 class="brand-text text-white ml-1">PhoneZone</h2></a
+    >
+    <!-- /Brand logo-->
+    <!-- Left Text-->
+    <div class="d-none d-lg-flex col-lg-8 align-items-center pt-6 pb-6 px-0">
+      <div class="w-100 d-lg-flex align-items-center justify-content-center">
+        <img
+          class="img-fluid"
+          src="https://images.unsplash.com/photo-1616353071588-708dcff912e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHw%3D&w=1000&q=80"
+          alt="Login V2"
+        />
+      </div>
+    </div>
+    <!-- /Left Text-->
+    <!-- Login-->
+    <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+        <h2 class="card-title font-weight-bold mb-1">Chào mừng bạn đến với PhoneZone! 👋</h2>
+        <!-- <p class="card-text mb-2">Please sign-in to your account and start the adventure</p> -->
+        <!-- <ngb-alert [type]="'primary'" [dismissible]="false">
+          <div class="alert-body font-small-2">
+            <p>
+              <small class="mr-50"><span class="font-weight-bold">Admin:</span> admin@demo.com | admin</small>
+            </p>
+            <p>
+              <small class="mr-50"><span class="font-weight-bold">Client:</span> client@demo.com | client</small>
+            </p>
+          </div>
+          <span
+            class="feather icon-help-circle auth-help-icon font-medium-3"
+            placement="left"
+            ngbTooltip="This is just for role based JWT authorization demo purpose"
+          ></span>
+        </ngb-alert> -->
+
+        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+          <div class="alert-body">
+            <p>{{ error }}</p>
+          </div>
+        </ngb-alert>
+
+        <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email</label>
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              aria-describedby="login-email"
+              autofocus=""
+              tabindex="1"
+            />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Bạn chưa nhập email</div>
+              <div *ngIf="f.email.errors.email">Email không đúng dịnh dạng</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="d-flex justify-content-between">
+              <label for="login-password">Mật khẩu</label
+              >
+              <!-- <a routerLink="/pages/authentication/forgot-password-v2"><small>Forgot Password?</small></a> -->
+            </div>
+            <div class="input-group input-group-merge form-password-toggle">
+              <input
+                [type]="passwordTextType ? 'text' : 'password'"
+                formControlName="password"
+                class="form-control form-control-merge"
+                [ngClass]="{ 'is-invalid error': submitted && f.password.errors }"
+                aria-describedby="login-password"
+                tabindex="2"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"
+                  ><i
+                    class="feather font-small-4"
+                    [ngClass]="{
+                      'icon-eye-off': passwordTextType,
+                      'icon-eye': !passwordTextType
+                    }"
+                    (click)="togglePasswordTextType()"
+                  ></i
+                ></span>
+              </div>
+            </div>
+            <div
+              *ngIf="submitted && f.password.errors"
+              class="invalid-feedback"
+              [ngClass]="{ 'd-block': submitted && f.password.errors }"
+            >
+              <div *ngIf="f.password.errors.required">Bạn chưa nhập mật khẩu</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div *ngIf="errMessage" style="color: red;">{{errMessage}}</div>
+          </div>
+          <button [disabled]="loading" class="btn btn-primary btn-block" tabindex="4" rippleEffect>
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Đăng nhập
+          </button>
+        </form>
+        <p class="text-center mt-2">
+          <span>Chưa có tài khoản?</span
+          ><a routerLink="/pages/authentication/register-v2"><span>&nbsp;Tạo tài khoản ngay</span></a>
+        </p>
+        <!-- <div class="divider my-2">
+          <div class="divider-text">or</div>
+        </div>
+        <div class="auth-footer-btn d-flex justify-content-center">
+          <a class="btn btn-facebook" href="javascript:void(0)"><i data-feather="facebook"></i></a
+          ><a class="btn btn-twitter white" href="javascript:void(0)"><i data-feather="twitter"></i></a
+          ><a class="btn btn-google" href="javascript:void(0)"><i data-feather="mail"></i></a
+          ><a class="btn btn-github" href="javascript:void(0)"><i data-feather="github"></i></a>
+        </div> -->
+      </div>
+    </div>
+    <!-- /Login-->
+  </div>
+</div>

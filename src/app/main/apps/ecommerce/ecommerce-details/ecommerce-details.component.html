@@ -1,0 +1,250 @@
+<div class="content-wrapper container-xxl p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="content-body">
+    <!-- app e-commerce details start -->
+    <section class="app-ecommerce-details">
+      <div class="card">
+        <!-- Product Details starts -->
+        <div class="card-body">
+          <div class="row my-2">
+            <div class="col-12 col-md-4  align-items-center justify-content-center mb-2 mb-md-0">
+                <!-- <img [src]="product.imgPath" class="img-fluid product-img" alt="product image" /> -->
+                <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '100%'}" [numVisible]="4"
+                [circular]="true" [showItemNavigators]="true" [showThumbnailNavigators]="false">
+                  <ng-template pTemplate="item" let-item>
+                      <img [src]="item.previewImageSrc" style="width: 100%; display: block;" />
+                  </ng-template>
+                  <ng-template pTemplate="thumbnail" let-item>
+                      <div class="grid grid-nogutter justify-content-center">
+                          <img [src]="item.thumbnailImageSrc" style="display: block; width: 70px; height: 70px; object-fit: fill;"/>
+                      </div>
+                  </ng-template>
+                </p-galleria>
+              
+            </div>
+            <div class="col-12 col-md-4">
+              <h4>{{ product.name }}</h4>
+              <div class="rating rating-sm">
+                <ngb-rating [rate]="product.rating" [readonly]="true" [max]="5" class="outline-none">
+                  <ng-template let-fill="fill" let-index="index"
+                    ><span class="fa fa-star-o mr-25" [class.fa-star]="fill === 100"></span
+                  ></ng-template>
+                </ngb-rating>
+              </div>
+              <span class="card-text item-company"
+                >Thương hiệu: <a href="javascript:void(0)" class="company-name">{{ product.brand.name }}</a></span
+              >
+              <div class="ecommerce-details-price d-flex flex-wrap mt-1">
+                <h4 class="item-price mr-1">{{ chosenProductType.price | number }}đ</h4>
+                
+              </div>
+              <p class="card-text">Tình trạng <span class="text-success ml-1">Còn hàng</span></p>
+              <p class="card-text">
+                <!-- {{ product.description }} -->
+              </p>
+              <!-- <ul class="product-features list-unstyled">
+                <li *ngIf="product.hasFreeShipping"><i data-feather="shopping-cart"></i> <span>Free Shipping</span></li>
+                <li>
+                  <i data-feather="dollar-sign"></i>
+                  <span>EMI options available</span>
+                </li>
+              </ul> -->
+              <!-- <hr /> -->
+              <div class="product-color-options">
+                <h6>Chọn loại sản phẩm</h6>
+                <div class="row">
+                    <div class="col-4 text-center" *ngFor="let productType of product.productTypes" (click)="onChangeProductType(productType)">
+                      <div [ngClass]="chosenProductType.id == productType.id ? ' product-type red-border' : 'product-type'" style="position: relative; padding: 6px;">
+                        <img width="20" height="15" src="assets\images\checked-icon.png" class="checked-icon" *ngIf="chosenProductType.id == productType.id">
+                        <div class="font-weight-bold">{{productType.name}}</div>
+                        <div class="">{{productType.price | number}}</div>
+                      </div>
+                     
+                    </div>
+                </div>
+              </div>
+              <div class="product-color-options">
+                <h6>Chọn màu cho sản phẩm</h6>
+                <div class="row">
+                    <div class="col-4 b-primary mt-1 " *ngFor="let color of colorList" (click)="changeBgColor(color)">
+                      <div [ngClass]="chosenColor.id == color.id ? 'color red-border' : 'color '" style="position: relative;">
+                        <img width="20" height="15" src="assets\images\checked-icon.png" class="checked-icon" *ngIf="chosenColor.id == color.id">
+                        <div class="font-weight-bold">{{color.name}}</div>
+                        <div class="">{{chosenProductType.price | number}}</div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <!-- <hr /> -->
+              <a
+              href="javascript:void(0)"
+              class="btn btn-success btn-cart mb-1"
+              (click)="addToCart(product.id, chosenColor.id, chosenProductType.id)"
+              style="width: 100%"
+            >
+              <i data-feather="shopping-cart" class=""></i>
+              <span class="add-to-cart">Mua ngay</span>
+            </a>
+              <div class="d-flex">
+                <!-- <a
+                  *ngIf="product.isInCart !== true"
+                  href="javascript:void(0)"
+                  class="btn btn-primary btn-cart mr-0 mr-sm-1 mb-1 mb-sm-0"
+                  (click)="addToCart(product)"
+                >
+                  <i data-feather="shopping-cart" class="mr-25"></i>
+                  <span class="add-to-cart">Thêm vào giỏ</span>
+                </a>
+                <a
+                  *ngIf="product.isInCart === true"
+                  routerLink="/apps/e-commerce/checkout"
+                  class="btn btn-primary btn-cart mr-0 mr-sm-1 mb-1 mb-sm-0"
+                  rippleEffect
+                >
+                  <i data-feather="shopping-cart" class="mr-25"></i>
+                  <span class="add-to-cart">View in cart</span>
+                </a> -->
+                <!-- <a
+                  href="javascript:void(0)"
+                  (click)="toggleWishlist(product)"
+                  class="btn btn-outline-secondary btn-wishlist mr-0 mr-sm-1 mb-1 mb-sm-0"
+                  rippleEffect
+                >
+                  <i
+                    class="fa mr-50"
+                    [ngClass]="product.isInWishlist === true ? 'fa-heart text-danger' : 'fa-heart-o'"
+                  ></i>
+                  <span>Yêu thích</span>
+                </a> -->
+                <!-- <div class="btn-group dropdown-icon-wrapper btn-share" ngbDropdown>
+                  <button
+                    ngbDropdownToggle
+                    type="button"
+                    class="btn btn-icon hide-arrow btn-outline-secondary"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    rippleEffect
+                  >
+                    <i data-feather="share-2"></i>
+                  </button>
+                  <div class="dropdown-menu-right" ngbDropdownMenu>
+                    <a ngbDropdownItem href="javascript:void(0)">
+                      <i data-feather="facebook"></i>
+                    </a>
+                    <a ngbDropdownItem href="javascript:void(0)">
+                      <i data-feather="twitter"></i>
+                    </a>
+                    <a ngbDropdownItem href="javascript:void(0)">
+                      <i data-feather="youtube"></i>
+                    </a>
+                    <a ngbDropdownItem href="javascript:void(0)">
+                      <i data-feather="instagram"></i>
+                    </a>
+                  </div> 
+                </div> -->
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-2 mb-md-0">
+              <div class="">
+                 <h4 class="text-center">Tính năng nổi bật</h4>
+                 <ul>
+                   <li *ngFor="let feature of product.features">{{feature.content}}</li>
+                 </ul>
+              </div>
+
+              <hr>
+
+              <div class="" style="padding: 10px; background: rgb(246, 246, 246); border-radius: 15px;">
+                <div>Bảng thông số kỹ thuật</div>
+                <table class="table" style="border-radius: 10px">
+                  <tbody>
+                    <ng-container  *ngFor="let specification of specificationList; let i = index" >
+                      <tr style="background: rgb(255, 254, 254); border-radius: 10px;" *ngIf=" i < 6">
+                          <td style="width: 40%">{{specification.name}}</td>
+                          <td style="width: 60%">
+                            <ul>
+                              <li class="list-unstyled" *ngFor="let content of specification.content.split(';')">
+                                {{content}}
+                              </li>
+                            </ul>
+                          </td>
+                      </tr>
+                      </ng-container>
+                  </tbody>
+                </table>
+             </div>
+            </div>
+          </div>
+        </div>
+        <!-- Product Details ends -->
+
+        <!-- Item features starts -->
+        <div class="item-features">
+          <div class="row text-center">
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+              <div class="w-75 mx-auto">
+                <i data-feather="award"></i>
+                <h4 class="mt-2 mb-1">Cam kết hàng chính hãng</h4>
+                <p class="card-text">Chúng tôi nói KHÔNG với hàng giả và cam kết chỉ bán hàng chính hãng đến khách hàng</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+              <div class="w-75 mx-auto">
+                <i data-feather="clock"></i>
+                <h4 class="mt-2 mb-1">30 ngày hoàn trả hoặc đổi mới</h4>
+                <p class="card-text">Chính sách hoàn trả hoặc đổi mới trong vòng 30 ngày nếu có sản phẩm bị lỗi do sản xuất </p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+              <div class="w-75 mx-auto">
+                <i data-feather="shield"></i>
+                <h4 class="mt-2 mb-1">2 năm bảo hành</h4>
+                <p class="card-text">Mọi sản phẩm của chúng tôi đều được bảo hành ít nhất 2 năm trở lên</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Item features ends -->
+
+        <!-- Related Products starts -->
+        <!-- <div class="card-body">
+          <div class="mt-4 mb-2 text-center">
+            <h4>Related Products</h4>
+            <p class="card-text">People also search for this items</p>
+          </div>
+          <div class="swiper-responsive-breakpoints swiper-container px-4 py-2" [swiper]="swiperResponsive">
+            <div class="swiper-wrapper mb-2">
+              <div class="swiper-slide" *ngFor="let relatedProduct of relatedProducts">
+                <a href="javascript:void(0)">
+                  <div class="item-heading">
+                    <h5 class="text-truncate mb-0">{{ relatedProduct.name }}</h5>
+                    <small class="text-body">by {{ relatedProduct.brand }}</small>
+                  </div>
+                  <div class="img-container mx-auto py-75">
+                    <img [src]="relatedProduct.image" class="img-fluid" alt="image" />
+                  </div>
+                  <div class="item-meta">
+                    <div class="rating rating-sm">
+                      <ngb-rating [rate]="relatedProduct.rating" [readonly]="true" [max]="5" class="outline-none">
+                        <ng-template let-fill="fill" let-index="index"
+                          ><span class="fa fa-star-o mr-25" [class.fa-star]="fill === 100"></span
+                        ></ng-template>
+                      </ngb-rating>
+                    </div>
+                    <p class="card-text text-primary mb-0">${{ relatedProduct.price }}</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+           
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div> -->
+        <!-- Related Products ends -->
+      </div>
+    </section>
+    <!-- app e-commerce details end -->
+  </div>
+</div>
